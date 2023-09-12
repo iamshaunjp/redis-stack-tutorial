@@ -2,26 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body {
+  @apply bg-gray-50
 }
+nav {
+  @apply py-3 px-5 bg-gray-100;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  & > div {
+    @apply max-w-5xl mx-auto flex items-center gap-4;
   }
 }
+main {
+  @apply max-w-5xl my-10 mx-auto;
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  & h2 {
+    @apply text-xl text-center font-bold;
+  }
+}
+form {
+  @apply py-8 mx-auto max-w-xl;
+
+  & label > span {
+    @apply block mb-2 mt-6 font-semibold;
+  }
+  & input[type="text"], input[type="number"], textarea {
+    @apply block border-2 w-full p-2;
+  }
+  & input + span {
+    @apply mr-7 ml-2;
+  }
+  & input[type="checkbox"], input[type="radio"] {
+    @apply accent-purple-500;
+  }
+  & button {
+    @apply mt-6 block;
+  }
+}
+button {
+  @apply bg-purple-500 text-white py-2 px-2 rounded-sm;
+}
+.card {
+  @apply bg-white rounded-sm text-center p-4;
+
+  & h3 {
+    @apply font-semibold;
+  }
+}
+.products {
+  @apply grid grid-cols-3 gap-4 my-7;
 }
