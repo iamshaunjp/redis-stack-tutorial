@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation"
 import { productRepository } from "../_schema/product"
+import { EntityId } from "redis-om"
 
 // create products
 export async function createProduct(formData) {
@@ -41,5 +42,26 @@ export async function deleteProduct(id) {
 
 // search products
 export async function searchProducts(formData) {
+  const text = formData.get('text')
+  const colors = formData.getAll('colors')
+
+  let products
   
+  // search WITHOUT color filter
+  if (colors.length < 1) {
+    products = await productRepository.search()
+      .where('title').matches(text)
+      .return.all()
+  }
+
+  // return error if no matches
+  if (products.length < 1) {
+    return {error: 'No search results'}
+  }
+
+  products = products.map(p => {
+    return {...p, id: p[EntityId]}
+  })
+
+  return products
 }

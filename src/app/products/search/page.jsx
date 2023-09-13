@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 
+// components
+import ProductList from '@/app/_components/productList'
+
 // actions
 import { searchProducts } from '@/app/_actions/products'
 
@@ -49,8 +52,8 @@ export default function Search() {
         </form>
       </section>
       <main>  
-        {/* <ProductList products={products} />
-        {error && (<div className="text-center text-lg">{error}</div>)} */}
+        <ProductList products={products} />
+        {error && (<div className="text-center text-lg">{error}</div>)}
       </main>
     </>
   )
