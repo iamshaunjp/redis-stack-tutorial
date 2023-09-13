@@ -1,5 +1,18 @@
-const getProducts = async () => {
+import { productRepository } from '../_schema/product'
+import { EntityId } from 'redis-om'
 
+// components
+import ProductList from '../_components/productList'
+
+const getProducts = async () => {
+  let result = await productRepository.search()
+    .return.all()
+
+  result = result.map(p => {
+    return {...p, id: p[EntityId]}
+  })
+
+  return result
 }
 
 export default async function Products() {
@@ -11,7 +24,7 @@ export default async function Products() {
         <h2>All Products</h2>
       </header>
 
-      {/* <ProductList products={products} /> */}
+      <ProductList products={products} />
     </main>
   )
 }
