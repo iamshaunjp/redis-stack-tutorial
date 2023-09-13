@@ -20,7 +20,16 @@ export async function createProduct(formData) {
 
 // update products
 export async function updateProduct(formData) {
+  const id = formData.get('id')
 
+  let product = await productRepository.fetch(id)
+
+  product.price = parseFloat(formData.get('price'))
+  product.count = parseInt(formData.get('count'))
+
+  await productRepository.save(product)
+
+  redirect('/products')
 }
 
 // delete products
