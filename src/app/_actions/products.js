@@ -51,6 +51,7 @@ export async function searchProducts(formData) {
   if (colors.length < 1) {
     products = await productRepository.search()
       .where('title').matches(text)
+      .sortBy('price', 'ASC')
       .return.all()
   }
 
@@ -59,6 +60,7 @@ export async function searchProducts(formData) {
     products = await productRepository.search()
       .where('title').matches(text)
       .and('colors').containOneOf(...colors)
+      .sortBy('price', 'ASC')
       .return.all()
   }
 

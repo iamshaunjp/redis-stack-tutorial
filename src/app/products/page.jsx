@@ -6,6 +6,7 @@ import ProductList from '../_components/productList'
 
 const getProducts = async () => {
   let result = await productRepository.search()
+    .sortBy('title', 'ASC')
     .return.all()
 
   result = result.map(p => {
