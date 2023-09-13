@@ -54,6 +54,14 @@ export async function searchProducts(formData) {
       .return.all()
   }
 
+  // search WITH color filter
+  if (colors.length > 0) {
+    products = await productRepository.search()
+      .where('title').matches(text)
+      .and('colors').containOneOf(...colors)
+      .return.all()
+  }
+
   // return error if no matches
   if (products.length < 1) {
     return {error: 'No search results'}
