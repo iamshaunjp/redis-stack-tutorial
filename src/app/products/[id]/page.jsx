@@ -61,7 +61,7 @@ export default async function UpdateProduct({ params }) {
       <div className="text-center my-8 max-w-xl mx-auto">
         <hr />
         <p className="my-4">Do you want to delete this product?</p>
-        {/* <DeleteButton id={product.id} /> */}
+        <DeleteButton id={product.id} />
       </div>
     </main>
   )

@@ -34,7 +34,9 @@ export async function updateProduct(formData) {
 
 // delete products
 export async function deleteProduct(id) {
+  await productRepository.remove(id)
 
+  redirect('/products')
 }
 
 // search products

@@ -10,7 +10,7 @@ export default function DeleteButton({ id }) {
 
   return (
     <button 
-      onClick={() => startTransition(() => deleteProduct())}
+      onClick={() => startTransition(() => deleteProduct(id))}
       disabled={isPending}
       className="w-36"
     >
